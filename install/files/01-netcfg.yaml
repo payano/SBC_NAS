@@ -1,0 +1,11 @@
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    ddd:
+      dhcp4: no
+      addresses:
+        - aaa.aaa.aaa.aaa/bb
+      gateway4: ccc.ccc.ccc.ccc
+      nameservers:
+          addresses: [127.0.0.1, 1.1.1.1]
