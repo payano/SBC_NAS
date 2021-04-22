@@ -35,17 +35,35 @@ nas-update-system
 
 }
 
+install_systemctl()
+{
+	# this is a hack...
+	if [ ! -f "lib/systemd/system/inotifywatcher.service" ]
+	then
+		sudo cp -rp files/*.service /lib/systemd/system
+		sudo chmod 0664 /lib/systemd/system/inotifywatcher.service
+		sudo ln -s /lib/systemd/system/inotifywatcher.service /etc/systemd/system/
+		sudo systemctl enable inotifywatcher.service
+		sudo systemctl start inotifywatcher.service
+	fi
+
+}
+
 #main
 fix_route
 remove_autostart
 #remove_nohup
 update_motd
 #install services
+install_systemctl
+
 $(dirname $0)/install_services.sh
 
 $(dirname $0)/../configure/start.sh
 
 $(dirname $0)/../docker_install/start.sh
+
+
 
 
 echo -ne "

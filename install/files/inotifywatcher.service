@@ -1,0 +1,8 @@
+[Unit]
+Description=inotifywatcher
+
+[Service]
+ExecStart=/data/admin/scripts/inotifywatcher.sh
+
+[Install]
+WantedBy=multi-user.target
