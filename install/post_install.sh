@@ -45,16 +45,19 @@ install_systemctl()
 		sudo systemctl enable inotifywatcher.service
 		sudo systemctl start inotifywatcher.service
 	fi
+}
 
+install_bins()
+{
+	sudo ln -s /data/admin/bin/* /usr/local/bin
 }
 
 #main
 fix_route
 remove_autostart
-#remove_nohup
 update_motd
-#install services
 install_systemctl
+install_bins
 
 $(dirname $0)/install_services.sh
 
