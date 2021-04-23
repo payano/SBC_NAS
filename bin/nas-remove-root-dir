@@ -1,0 +1,47 @@
+#!/bin/bash
+
+DIRNAME=$1
+GROUP=nas
+
+usage()
+{
+	echo -ne "usage is:
+$0 <directory>
+"
+}
+
+if [ -z "$DIRNAME" ]
+then
+	echo "no directory provided.."
+	usage
+	exit 1
+fi
+
+if [ ! -d "/data/$DIRNAME" ]
+then
+	echo "$DIRNAME is not a directory.."
+	exit 1
+fi	
+
+if [ ! -z "$(echo $DIRNAME| grep -oE '\.')" ] || [ ! -z "$(echo $DIRNAME| grep -oE '\/')" ]
+then
+	echo "special chars is invalid... ( . or /)"
+	exit 1
+fi
+
+if [ "$DIRNAME" == "admin" ] || [ "$DIRNAME" == "files" ] || [ "$DIRNAME" == "lost+found" ] || [ "$DIRNAME" == "system" ]
+then
+	echo "Forbidden..."
+	exit 1
+fi
+
+echo deleting $DIRNAME
+read -p "Are you really sure? [N/y]: " confirm
+if [ "$confirm" == "n" ] ||  [ "$confirm" == "N" ]
+then
+	echo "quitting.."
+	exit 0
+fi
+
+echo deleting $DIRNAME
+sudo rm -rf /data/$DIRNAME

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+DIRNAME=$1
+GROUP=nas
+
+usage()
+{
+	echo -ne "usage is:
+$0 <directory>
+"
+}
+
+if [ -z "$DIRNAME" ]
+then
+	echo "no directory provided.."
+	usage
+	exit 1
+fi
+
+if [ ! -z "$(echo $DIRNAME| grep -oE '\.')" ] || [ ! -z "$(echo $DIRNAME| grep -oE '\/')" ]
+then
+	echo "special chars is invalid... ( . or /)"
+fi
+
+echo creating $DIRNAME
+sudo mkdir -p /data/$DIRNAME
+echo setting permissions...
+sudo chmod 0775 /data/$DIRNAME
+sudo chown $(whoami):nas /data/$DIRNAME

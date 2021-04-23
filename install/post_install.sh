@@ -24,13 +24,12 @@ update_motd()
 {
 	echo -ne '
 Theses commands will modify account settings:
-nas-adduser      # Create a new user
-nas-deluser      # Delete a user
-nas-passwd       # Change password for a user
-
-To update the system:
-nas-update-system
-
+nas-adduser          # Create a new user
+nas-deluser          # Delete a user
+nas-passwd           # Change password for a user
+nas-create-root-dir  # Create a new directory under /data
+nas-remove-root-dir  # Remove ad direcotyr under /data
+nas-update           # Update the system
 ' | sudo tee /etc/motd
 
 }
