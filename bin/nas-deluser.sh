@@ -1,0 +1,36 @@
+#!/bin/bash
+
+USERNAME=$1
+MIN_PWD_LEN=5
+GROUP=nas
+
+usage()
+{
+	echo -ne "usage is:
+$0 <username>
+"
+}
+
+if [ -z "$USERNAME" ] 
+then
+	echo "no username provided.."
+	usage
+	exit 1
+fi
+
+#check if docker is found...
+DOCKER_ID=$(docker ps | awk '{print $1" "$2}' | grep nextcloud | awk '{print $1}')
+if [ -z "$DOCKER_ID" ]
+then
+	echo "nextcloud docker not running..."
+	exit 1
+fi
+
+echo "deleting samba user..."
+sudo smbpasswd -x $USERNAME
+echo "deleting system user..."
+sudo userdel -f -r $USERNAME
+echo "deleting nextcloud user..."
+sudo /usr/bin/docker exec -u 33 $DOCKER_ID ./occ user:delete $USERNAME
+
+
