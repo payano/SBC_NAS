@@ -54,12 +54,12 @@ then
 	exit 1
 fi
 
-echo "creating system user..."
+echo "changing password on system..."
 echo $USERNAME:$password | sudo chpasswd
 
-echo "creating samba user..."
+echo "changing password on samba..."
 (echo $password; echo $password)| sudo smbpasswd -s $USERNAME
-echo "creating nextcloud user..."
+echo "changing password on nextcloud..."
 sudo /usr/bin/docker exec -e "OC_PASS=$password" -u 33 $DOCKER_ID ./occ user:resetpassword --password-from-env $USERNAME
 
 

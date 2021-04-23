@@ -55,7 +55,8 @@ then
 fi
 
 echo "creating system user..."
-sudo useradd -g $GROUP -G www-data -s /usr/sbin/nologin -d /home/$USERNAME -m $USERNAME -p $(openssl passwd -crypt $password)
+sudo useradd -g $GROUP -G www-data -s /usr/sbin/nologin -d /home/$USERNAME -m $USERNAME
+echo $USERNAME:$password | sudo chpasswd
 echo "creating samba user..."
 (echo $password; echo $password)| sudo smbpasswd -a -s $USERNAME
 echo "creating nextcloud user..."
