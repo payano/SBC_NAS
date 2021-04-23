@@ -39,7 +39,7 @@ install_systemctl()
 	# this is a hack...
 	if [ ! -f "lib/systemd/system/inotifywatcher.service" ]
 	then
-		sudo cp -rp files/*.service /lib/systemd/system
+		sudo cp -rp $(dirname $0)/files/*.service /lib/systemd/system
 		sudo chmod 0664 /lib/systemd/system/inotifywatcher.service
 		sudo ln -s /lib/systemd/system/inotifywatcher.service /etc/systemd/system/
 		sudo systemctl enable inotifywatcher.service
