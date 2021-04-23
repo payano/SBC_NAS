@@ -24,10 +24,10 @@ then
 fi
 
 #create cronjob
-FILE_EXISTS=$(sudo ls -1 /var/spool/cron/crontabs/ | grep root)
+FILE_EXISTS=$(sudo grep nextcloud_cron.sh /etc/crontab)
 if [ -z "$FILE_EXISTS" ]
 then
-	echo "*  */12 *  *  *	/data/admin/scripts/nextcloud_cron.sh" | sudo tee -a /var/spool/cron/crontabs/root
+	echo "*  */12 *  *  *	root	/data/admin/scripts/nextcloud_cron.sh" | sudo tee -a /etc/crontab
 	sudo systemctl restart cron
 fi
 
