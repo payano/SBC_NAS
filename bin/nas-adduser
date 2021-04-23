@@ -55,7 +55,7 @@ then
 fi
 
 echo "creating system user..."
-sudo useradd -g $GROUP -s /bin/bash -d /home/$USERNAME -m $USERNAME -p $(openssl passwd -crypt $password)
+sudo useradd -g $GROUP -s /usr/sbin/nologin -d /home/$USERNAME -m $USERNAME -p $(openssl passwd -crypt $password)
 echo "creating samba user..."
 (echo $password; echo $password)| sudo smbpasswd -a -s $USERNAME
 echo "creating nextcloud user..."
