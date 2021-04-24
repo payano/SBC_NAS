@@ -4,6 +4,10 @@ source $(dirname $0)/../config/global.sh
 
 WATCH_DIR="${MOUNTPOINT}/files"
 
+if [ ! -d "$WATCH_DIR" ]
+then
+        mkdir -p $WATCH_DIR
+fi
 
 inotifywait -q -r -m -e create $WATCH_DIR |
 while read -r dir event file; do
