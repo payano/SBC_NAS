@@ -26,7 +26,7 @@ then
 fi
 
 #check if docker is found...
-DOCKER_ID=$(docker ps | awk '{print $1" "$2}' | grep nextcloud | awk '{print $1}')
+DOCKER_ID=$(sudo docker ps | awk '{print $1" "$2}' | grep nextcloud | awk '{print $1}')
 if [ -z "$DOCKER_ID" ]
 then
 	echo "nextcloud docker not running..."
