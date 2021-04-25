@@ -7,6 +7,8 @@ WATCH_DIR="${MOUNTPOINT}/files"
 if [ ! -d "$WATCH_DIR" ]
 then
         mkdir -p $WATCH_DIR
+	chown www-data:www-data $WATCH_DIR
+	chmor 0775 $WATCH_DIR
 fi
 
 inotifywait -q -r -m -e create $WATCH_DIR |
