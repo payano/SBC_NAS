@@ -57,9 +57,9 @@ create_files_dir()
 	DATA_DIR="/data/files"
 	if [ ! -d $DATA_DIR ]
 	then
-		mkdir -p $DATA_DIR
-		chown www-data:www-data $DATA_DIR
-		chmod 0775 $DATA_DIR
+		sudo mkdir -p $DATA_DIR
+		sudo chown www-data:www-data $DATA_DIR
+		sudo chmod 0775 $DATA_DIR
 	fi
 
 }
