@@ -52,8 +52,20 @@ install_bins()
 	sudo ln -s /data/admin/bin/* /usr/local/bin
 }
 
+create_files_dir()
+{
+	DATA_DIR="/data/files"
+	if [ ! -d $DATA_DIR ]
+	then
+		mkdir -p $DATA_DIR
+		chown www-data:www-data $DATA_DIR
+		chmod 0775 $DATA_DIR
+	fi
+
+}
 #main
 fix_route
+create_files_dir
 remove_autostart
 update_motd
 install_systemctl
