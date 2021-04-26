@@ -58,9 +58,9 @@ create_files_dir()
 	if [ ! -d $DATA_DIR ]
 	then
 		sudo mkdir -p $DATA_DIR
-		sudo chown www-data:www-data $DATA_DIR
-		sudo chmod 0775 $DATA_DIR
 	fi
+	sudo chown www-data:www-data $DATA_DIR
+	sudo chmod 0775 $DATA_DIR
 
 }
 #main
@@ -77,6 +77,7 @@ $(dirname $0)/../configure/start.sh
 
 $(dirname $0)/../docker_install/start.sh
 
+create_files_dir
 
 
 
