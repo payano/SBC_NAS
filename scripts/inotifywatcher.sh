@@ -13,6 +13,7 @@ fi
 
 inotifywait -q -r -m -e create $WATCH_DIR |
 while read -r dir event file; do
+	sleep 5
 	if [ -f "${dir}${file}" ]
 	then
 		chmod 0664 ${dir}${file}
