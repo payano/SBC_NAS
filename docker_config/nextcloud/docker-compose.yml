@@ -6,9 +6,9 @@ volumes:
 
 services:
   db:
-    image: mariadb:10.6.0
+    image: mariadb
     restart: always
-    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW 
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --innodb-read-only-compressed=OFF
     volumes:
       - db:/var/lib/mysql
     environment:
