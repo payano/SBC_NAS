@@ -9,7 +9,7 @@ OLDPWD=$(pwd)
 echo "updating admin..."
 cd /data/admin
 
-if [[! -d "$DIRECTORY" ]]
+if [[ ! -d "$DIRECTORY" ]]
 then
 	mkdir backup
 fi
