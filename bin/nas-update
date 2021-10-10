@@ -2,12 +2,18 @@
 
 sudo apt update
 sudo apt upgrade -y
+sudo apt autoremove -y
 sudo /data/admin/docker_install/start.sh
 
 OLDPWD=$(pwd)
 echo "updating admin..."
 cd /data/admin
-mkdir backup
+
+if [[! -d "$DIRECTORY" ]]
+then
+	mkdir backup
+fi
+
 cp ./config/global.sh backup
 git checkout ./config/global.sh
 git pull
